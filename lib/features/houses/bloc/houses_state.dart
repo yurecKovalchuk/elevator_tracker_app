@@ -11,5 +11,7 @@ enum HousesStateStatus {
 class HousesState with _$HousesState {
   const factory HousesState({
     @Default(HousesStateStatus.initial) HousesStateStatus status,
+    HouseModel? houseModel,
+    List<HousesDTO>? housesDTO,
   }) = _HousesState;
 }
