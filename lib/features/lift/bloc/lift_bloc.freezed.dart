@@ -17,6 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$LiftState {
   LiftStateStatus get status => throw _privateConstructorUsedError;
+  String? get houseName => throw _privateConstructorUsedError;
+  int? get floors => throw _privateConstructorUsedError;
+  int? get currentLiftPosition => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LiftStateCopyWith<LiftState> get copyWith =>
@@ -28,7 +31,11 @@ abstract class $LiftStateCopyWith<$Res> {
   factory $LiftStateCopyWith(LiftState value, $Res Function(LiftState) then) =
       _$LiftStateCopyWithImpl<$Res, LiftState>;
   @useResult
-  $Res call({LiftStateStatus status});
+  $Res call(
+      {LiftStateStatus status,
+      String? houseName,
+      int? floors,
+      int? currentLiftPosition});
 }
 
 /// @nodoc
@@ -45,12 +52,27 @@ class _$LiftStateCopyWithImpl<$Res, $Val extends LiftState>
   @override
   $Res call({
     Object? status = null,
+    Object? houseName = freezed,
+    Object? floors = freezed,
+    Object? currentLiftPosition = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as LiftStateStatus,
+      houseName: freezed == houseName
+          ? _value.houseName
+          : houseName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      floors: freezed == floors
+          ? _value.floors
+          : floors // ignore: cast_nullable_to_non_nullable
+              as int?,
+      currentLiftPosition: freezed == currentLiftPosition
+          ? _value.currentLiftPosition
+          : currentLiftPosition // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -63,7 +85,11 @@ abstract class _$$LiftStateImplCopyWith<$Res>
       __$$LiftStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({LiftStateStatus status});
+  $Res call(
+      {LiftStateStatus status,
+      String? houseName,
+      int? floors,
+      int? currentLiftPosition});
 }
 
 /// @nodoc
@@ -78,12 +104,27 @@ class __$$LiftStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
+    Object? houseName = freezed,
+    Object? floors = freezed,
+    Object? currentLiftPosition = freezed,
   }) {
     return _then(_$LiftStateImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as LiftStateStatus,
+      houseName: freezed == houseName
+          ? _value.houseName
+          : houseName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      floors: freezed == floors
+          ? _value.floors
+          : floors // ignore: cast_nullable_to_non_nullable
+              as int?,
+      currentLiftPosition: freezed == currentLiftPosition
+          ? _value.currentLiftPosition
+          : currentLiftPosition // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -91,15 +132,25 @@ class __$$LiftStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LiftStateImpl implements _LiftState {
-  const _$LiftStateImpl({this.status = LiftStateStatus.initial});
+  const _$LiftStateImpl(
+      {this.status = LiftStateStatus.initial,
+      this.houseName,
+      this.floors,
+      this.currentLiftPosition});
 
   @override
   @JsonKey()
   final LiftStateStatus status;
+  @override
+  final String? houseName;
+  @override
+  final int? floors;
+  @override
+  final int? currentLiftPosition;
 
   @override
   String toString() {
-    return 'LiftState(status: $status)';
+    return 'LiftState(status: $status, houseName: $houseName, floors: $floors, currentLiftPosition: $currentLiftPosition)';
   }
 
   @override
@@ -107,11 +158,17 @@ class _$LiftStateImpl implements _LiftState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LiftStateImpl &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.houseName, houseName) ||
+                other.houseName == houseName) &&
+            (identical(other.floors, floors) || other.floors == floors) &&
+            (identical(other.currentLiftPosition, currentLiftPosition) ||
+                other.currentLiftPosition == currentLiftPosition));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status);
+  int get hashCode =>
+      Object.hash(runtimeType, status, houseName, floors, currentLiftPosition);
 
   @JsonKey(ignore: true)
   @override
@@ -121,10 +178,20 @@ class _$LiftStateImpl implements _LiftState {
 }
 
 abstract class _LiftState implements LiftState {
-  const factory _LiftState({final LiftStateStatus status}) = _$LiftStateImpl;
+  const factory _LiftState(
+      {final LiftStateStatus status,
+      final String? houseName,
+      final int? floors,
+      final int? currentLiftPosition}) = _$LiftStateImpl;
 
   @override
   LiftStateStatus get status;
+  @override
+  String? get houseName;
+  @override
+  int? get floors;
+  @override
+  int? get currentLiftPosition;
   @override
   @JsonKey(ignore: true)
   _$$LiftStateImplCopyWith<_$LiftStateImpl> get copyWith =>
