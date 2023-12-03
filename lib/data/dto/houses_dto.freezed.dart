@@ -26,6 +26,8 @@ mixin _$HousesDTO {
   int? get floors => throw _privateConstructorUsedError;
   @JsonKey(name: 'currentLiftPosition')
   int? get currentLiftPosition => throw _privateConstructorUsedError;
+  @JsonKey(name: 'id')
+  int? get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +43,8 @@ abstract class $HousesDTOCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'houseName') String? houseName,
       @JsonKey(name: 'floors') int? floors,
-      @JsonKey(name: 'currentLiftPosition') int? currentLiftPosition});
+      @JsonKey(name: 'currentLiftPosition') int? currentLiftPosition,
+      @JsonKey(name: 'id') int? id});
 }
 
 /// @nodoc
@@ -60,6 +63,7 @@ class _$HousesDTOCopyWithImpl<$Res, $Val extends HousesDTO>
     Object? houseName = freezed,
     Object? floors = freezed,
     Object? currentLiftPosition = freezed,
+    Object? id = freezed,
   }) {
     return _then(_value.copyWith(
       houseName: freezed == houseName
@@ -73,6 +77,10 @@ class _$HousesDTOCopyWithImpl<$Res, $Val extends HousesDTO>
       currentLiftPosition: freezed == currentLiftPosition
           ? _value.currentLiftPosition
           : currentLiftPosition // ignore: cast_nullable_to_non_nullable
+              as int?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as int?,
     ) as $Val);
   }
@@ -89,7 +97,8 @@ abstract class _$$HousesDTOImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'houseName') String? houseName,
       @JsonKey(name: 'floors') int? floors,
-      @JsonKey(name: 'currentLiftPosition') int? currentLiftPosition});
+      @JsonKey(name: 'currentLiftPosition') int? currentLiftPosition,
+      @JsonKey(name: 'id') int? id});
 }
 
 /// @nodoc
@@ -106,6 +115,7 @@ class __$$HousesDTOImplCopyWithImpl<$Res>
     Object? houseName = freezed,
     Object? floors = freezed,
     Object? currentLiftPosition = freezed,
+    Object? id = freezed,
   }) {
     return _then(_$HousesDTOImpl(
       houseName: freezed == houseName
@@ -120,6 +130,10 @@ class __$$HousesDTOImplCopyWithImpl<$Res>
           ? _value.currentLiftPosition
           : currentLiftPosition // ignore: cast_nullable_to_non_nullable
               as int?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -130,7 +144,8 @@ class _$HousesDTOImpl implements _HousesDTO {
   const _$HousesDTOImpl(
       {@JsonKey(name: 'houseName') this.houseName,
       @JsonKey(name: 'floors') this.floors,
-      @JsonKey(name: 'currentLiftPosition') this.currentLiftPosition});
+      @JsonKey(name: 'currentLiftPosition') this.currentLiftPosition = 1,
+      @JsonKey(name: 'id') this.id});
 
   factory _$HousesDTOImpl.fromJson(Map<String, dynamic> json) =>
       _$$HousesDTOImplFromJson(json);
@@ -144,10 +159,13 @@ class _$HousesDTOImpl implements _HousesDTO {
   @override
   @JsonKey(name: 'currentLiftPosition')
   final int? currentLiftPosition;
+  @override
+  @JsonKey(name: 'id')
+  final int? id;
 
   @override
   String toString() {
-    return 'HousesDTO(houseName: $houseName, floors: $floors, currentLiftPosition: $currentLiftPosition)';
+    return 'HousesDTO(houseName: $houseName, floors: $floors, currentLiftPosition: $currentLiftPosition, id: $id)';
   }
 
   @override
@@ -159,13 +177,14 @@ class _$HousesDTOImpl implements _HousesDTO {
                 other.houseName == houseName) &&
             (identical(other.floors, floors) || other.floors == floors) &&
             (identical(other.currentLiftPosition, currentLiftPosition) ||
-                other.currentLiftPosition == currentLiftPosition));
+                other.currentLiftPosition == currentLiftPosition) &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, houseName, floors, currentLiftPosition);
+      Object.hash(runtimeType, houseName, floors, currentLiftPosition, id);
 
   @JsonKey(ignore: true)
   @override
@@ -185,8 +204,8 @@ abstract class _HousesDTO implements HousesDTO {
   const factory _HousesDTO(
       {@JsonKey(name: 'houseName') final String? houseName,
       @JsonKey(name: 'floors') final int? floors,
-      @JsonKey(name: 'currentLiftPosition')
-      final int? currentLiftPosition}) = _$HousesDTOImpl;
+      @JsonKey(name: 'currentLiftPosition') final int? currentLiftPosition,
+      @JsonKey(name: 'id') final int? id}) = _$HousesDTOImpl;
 
   factory _HousesDTO.fromJson(Map<String, dynamic> json) =
       _$HousesDTOImpl.fromJson;
@@ -200,6 +219,9 @@ abstract class _HousesDTO implements HousesDTO {
   @override
   @JsonKey(name: 'currentLiftPosition')
   int? get currentLiftPosition;
+  @override
+  @JsonKey(name: 'id')
+  int? get id;
   @override
   @JsonKey(ignore: true)
   _$$HousesDTOImplCopyWith<_$HousesDTOImpl> get copyWith =>

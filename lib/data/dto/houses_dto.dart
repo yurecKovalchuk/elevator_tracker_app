@@ -11,7 +11,8 @@ class HousesDTO with _$HousesDTO {
   const factory HousesDTO({
     @JsonKey(name: 'houseName') String? houseName,
     @JsonKey(name: 'floors') int? floors,
-    @JsonKey(name: 'currentLiftPosition') int? currentLiftPosition,
+    @Default(1) @JsonKey(name: 'currentLiftPosition') int? currentLiftPosition,
+    @JsonKey(name: 'id') int? id,
   }) = _HousesDTO;
 
   factory HousesDTO.fromJson(Map<String, dynamic> json) => _$HousesDTOFromJson(json);
