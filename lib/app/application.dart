@@ -1,17 +1,22 @@
+import 'package:elevator_tracker_app/data/dto/houses_dto.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:elevator_tracker_app/domain/domain.dart';
 import '../features/features.dart';
 import 'app.dart';
 
 class Application extends StatelessWidget {
   Application({
     super.key,
+    required this.serviceLocator,
   });
 
   late final GoRouter _router = _buildRouting();
+  final GetIt serviceLocator;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +39,9 @@ class Application extends StatelessWidget {
         name: AppRoutInfo.housesScreen.name,
         builder: (context, state) {
           return BlocProvider<HousesBloc>(
-            create: (BuildContext context) => HousesBloc(),
+            create: (BuildContext context) => HousesBloc(
+              serviceLocator<TrackerRepository>(),
+            ),
             child: const HousesScreen(),
           );
         },
@@ -43,8 +50,12 @@ class Application extends StatelessWidget {
         path: AppRoutInfo.liftScreen.path,
         name: AppRoutInfo.liftScreen.name,
         builder: (context, state) {
+          final extraHouse = state.extra as HousesDTO;
+
           return BlocProvider<LiftBloc>(
-            create: (BuildContext context) => LiftBloc(),
+            create: (BuildContext context) => LiftBloc(
+              serviceLocator<TrackerRepository>(), extraHouse
+            ),
             child: const LiftScreen(),
           );
         },
