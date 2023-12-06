@@ -11,5 +11,7 @@ enum LiftStateStatus {
 class LiftState with _$LiftState {
   const factory LiftState({
     @Default(LiftStateStatus.initial) LiftStateStatus status,
+    HousesDTO? housesDTO,
+    int? newLiftPosition,
   }) = _LiftState;
 }
