@@ -144,7 +144,7 @@ class _$HousesDTOImpl implements _HousesDTO {
   const _$HousesDTOImpl(
       {@JsonKey(name: 'houseName') this.houseName,
       @JsonKey(name: 'floors') this.floors,
-      @JsonKey(name: 'currentLiftPosition') this.currentLiftPosition = 1,
+      @JsonKey(name: 'currentLiftPosition') this.currentLiftPosition,
       @JsonKey(name: 'id') this.id});
 
   factory _$HousesDTOImpl.fromJson(Map<String, dynamic> json) =>

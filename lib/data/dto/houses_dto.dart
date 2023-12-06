@@ -11,7 +11,7 @@ class HousesDTO with _$HousesDTO {
   const factory HousesDTO({
     @JsonKey(name: 'houseName') String? houseName,
     @JsonKey(name: 'floors') int? floors,
-    @Default(1) @JsonKey(name: 'currentLiftPosition') int? currentLiftPosition,
+    @JsonKey(name: 'currentLiftPosition') int? currentLiftPosition,
     @JsonKey(name: 'id') int? id,
   }) = _HousesDTO;
 
