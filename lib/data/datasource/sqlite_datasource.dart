@@ -44,13 +44,24 @@ class SQLiteDataSource {
     );
   }
 
-  Future<void> insertHouse(HouseModel houseModel) async {
+  Future<void> insertHouse(HouseModel houseModel, {int currentLiftPosition = 1}) async {
     final Database db = await open();
-    await db.insert(
-      Tables.housesTableName,
-      houseModel.toJson(),
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
+
+    await db.transaction((txn) async {
+      int houseId = await txn.insert(
+        Tables.housesTableName,
+        houseModel.toJson(),
+        conflictAlgorithm: ConflictAlgorithm.replace,
+      );
+
+      await txn.insert(
+        Tables.liftPositionTableName,
+        {
+          Tables.liftPositionColumnHouseId: houseId,
+          Tables.liftPositionColumnCurrentLiftPosition: currentLiftPosition,
+        },
+      );
+    });
   }
 
   Future<List<HousesDTO>> getAllHouses() async {
@@ -59,6 +70,23 @@ class SQLiteDataSource {
     return List.generate(maps.length, (i) {
       return HousesDTO.fromJson(maps[i]);
     });
+  }
+
+  Future<HousesDTO?> getHouseById(int id) async {
+    final Database db = await open();
+    final List<Map<String, dynamic>> maps = await db.rawQuery('''
+    SELECT ${Tables.housesTableName}.*, ${Tables.liftPositionColumnCurrentLiftPosition}
+    FROM ${Tables.housesTableName}
+    LEFT JOIN ${Tables.liftPositionTableName}
+    ON ${Tables.housesTableName}.${Tables.housesColumnId} = ${Tables.liftPositionTableName}.${Tables.liftPositionColumnHouseId}
+    WHERE ${Tables.housesTableName}.${Tables.housesColumnId} = ?
+  ''', [id]);
+
+    if (maps.isNotEmpty) {
+      return HousesDTO.fromJson(maps.first);
+    } else {
+      return null;
+    }
   }
 
   Future<void> updateCurrentLiftPosition(int houseId, int newCurrentLiftPosition) async {

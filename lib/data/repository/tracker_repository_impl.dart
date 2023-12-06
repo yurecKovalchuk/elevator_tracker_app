@@ -24,6 +24,12 @@ class TrackerRepositoryImpl implements TrackerRepository {
   }
 
   @override
+  Future<HousesDTO?> getHouseById(int id) async {
+    final response = await _dataSourceSQLite.getHouseById(id);
+    return response;
+  }
+
+  @override
   Future<void> updateCurrentLiftPosition(int id, int newCurrentLiftPosition) async {
     _dataSourceSQLite.updateCurrentLiftPosition(id, newCurrentLiftPosition);
   }

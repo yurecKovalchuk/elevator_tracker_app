@@ -5,9 +5,9 @@ import '../../data/dto/dto.dart';
 abstract class TrackerRepository {
   Future<void> insertHouses(HouseModel houseModel);
 
-  // Future<void> insertLiftPosition(int houseId, int currentLiftPosition);
-
   Future<List<HousesDTO>> getAllHouses();
+
+  Future<HousesDTO?> getHouseById(int id);
 
   Future<void> updateCurrentLiftPosition(int id, int newCurrentLiftPosition);
 
