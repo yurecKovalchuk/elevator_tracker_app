@@ -50,13 +50,16 @@ class Application extends StatelessWidget {
         path: AppRoutInfo.liftScreen.path,
         name: AppRoutInfo.liftScreen.name,
         builder: (context, state) {
-          final extraHouse = state.extra as HousesDTO;
+          final queriesHouse = state.uri.queryParameters['id'];
+          // final extraHouse = state.extra as HousesDTO;
 
           return BlocProvider<LiftBloc>(
             create: (BuildContext context) => LiftBloc(
-              serviceLocator<TrackerRepository>(), extraHouse
+              serviceLocator<TrackerRepository>(),
             ),
-            child: const LiftScreen(),
+            child: LiftScreen(
+              queriesHouse!,
+            ),
           );
         },
       ),
