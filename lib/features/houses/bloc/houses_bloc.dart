@@ -1,10 +1,10 @@
-import 'package:elevator_tracker_app/data/data.dart';
-import 'package:elevator_tracker_app/domain/domain.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:elevator_tracker_app/models/models.dart';
+import 'package:elevator_tracker_app/data/data.dart';
+import 'package:elevator_tracker_app/domain/domain.dart';
 
 part 'houses_state.dart';
 
@@ -22,7 +22,6 @@ class HousesBloc extends Cubit<HousesState> {
   void setHouse(String name, int floor) {
     final houseModel = HouseModel(houseName: name, floors: floor);
     _repository.insertHouses(houseModel);
-   // _repository.insertLiftPosition(1, 1);
   }
 
   void loadHouses() async {
@@ -30,8 +29,7 @@ class HousesBloc extends Cubit<HousesState> {
     emit(state.copyWith(housesDTO: result));
   }
 
-  void deleteHouse(int id){
+  void deleteHouse(int id) {
     _repository.deleteHouse(id);
   }
 }
-
