@@ -26,65 +26,67 @@ class _HousesScreenState extends State<HousesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocConsumer<HousesBloc, HousesState>(
-        builder: (context, state) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                ElevatedButton(onPressed: () => showAddHouseDialog(context), child: const Text('jjjj')),
-                Expanded(
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: _bloc.state.housesDTO?.length,
-                    itemBuilder: (context, index) {
-                      final house = _bloc.state.housesDTO?[index];
-                      return Dismissible(
-                          key: Key(house?.id.toString() ?? ''),
-                          direction: DismissDirection.endToStart,
-                          onDismissed: (direction) {
-                            _bloc.deleteHouse(house?.id ?? 0);
-                          },
-                          background: Container(
-                            alignment: Alignment.centerRight,
-                            padding: EdgeInsets.only(right: 16.0),
-                            color: Colors.red,
-                            child: Icon(Icons.delete, color: Colors.white),
-                          ),
-                          child: GestureDetector(
-                            onTap: () {
-                              _navigatorPushToLiftScreen(house?.id);
+      body: SafeArea(
+        child: BlocConsumer<HousesBloc, HousesState>(
+          builder: (context, state) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  ElevatedButton(onPressed: () => showAddHouseDialog(context), child: const Text('jjjj')),
+                  Expanded(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: _bloc.state.housesDTO?.length,
+                      itemBuilder: (context, index) {
+                        final house = _bloc.state.housesDTO?[index];
+                        return Dismissible(
+                            key: Key(house?.id.toString() ?? ''),
+                            direction: DismissDirection.endToStart,
+                            onDismissed: (direction) {
+                              _bloc.deleteHouse(house?.id ?? 0);
                             },
-                            child: Card(
-                              margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(16.0),
-                                      child: Text(
-                                        house?.houseName ?? '',
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(fontSize: 22.0),
+                            background: Container(
+                              alignment: Alignment.centerRight,
+                              padding: EdgeInsets.only(right: 16.0),
+                              color: Colors.red,
+                              child: Icon(Icons.delete, color: Colors.white),
+                            ),
+                            child: GestureDetector(
+                              onTap: () {
+                                _navigatorPushToLiftScreen(house?.id);
+                              },
+                              child: Card(
+                                margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(16.0),
+                                        child: Text(
+                                          house?.houseName ?? '',
+                                          textAlign: TextAlign.center,
+                                          style: const TextStyle(fontSize: 22.0),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                          ));
-                    },
+                            ));
+                      },
+                    ),
                   ),
-                ),
-              ],
-            ),
-          );
-        },
-        listener: (context, state) {},
+                ],
+              ),
+            );
+          },
+          listener: (context, state) {},
+        ),
       ),
     );
   }

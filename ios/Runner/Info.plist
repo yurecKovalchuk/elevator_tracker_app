@@ -45,5 +45,9 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSLocalNotificationUsageDescription</key>
+    <string>We would like to send you notifications for important updates.</string>
+    <key>NSRemoteNotificationType</key>
+    <integer>1</integer>
 </dict>
 </plist>

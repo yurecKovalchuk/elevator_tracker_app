@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:elevator_tracker_app/data/data.dart';
 import 'package:elevator_tracker_app/domain/domain.dart';
+import 'package:elevator_tracker_app/services/services.dart';
 
 part 'lift_state.dart';
 
@@ -38,10 +39,15 @@ class LiftBloc extends Cubit<LiftState> {
       await _repository.updateCurrentLiftPosition(state.housesDTO!.id!, currentLiftPosition);
       getHouseDTO(state.housesDTO!.id!);
     }
+    pushNotification(state.housesDTO!.houseName.toString(), currentLiftPosition);
     emit(state.copyWith(status: LiftStateStatus.success));
   }
 
   void moveLiftTo(int id, int newFloor) {
     _repository.updateCurrentLiftPosition(id, newFloor);
+  }
+
+  void pushNotification(String houseName, int currentLiftPosition) {
+    NotificationHandler.showNotification(houseName, currentLiftPosition.toString());
   }
 }

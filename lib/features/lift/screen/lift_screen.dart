@@ -30,47 +30,49 @@ class _LiftScreenState extends State<LiftScreen> {
     return BlocConsumer<LiftBloc, LiftState>(
       builder: (context, state) {
         return Scaffold(
-            body: Column(
-          children: [
-            const Text('Floors'),
-            const Divider(),
-            Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: _bloc.state.housesDTO?.floors,
-                itemBuilder: (context, index) {
-                  final floorIndex = index + 1;
-                  return GestureDetector(
-                    onTap: () {
-                      _bloc.setNewLiftPosition(floorIndex);
-                    },
-                    child: Card(
-                      color: setColor(floorIndex),
-                      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Text(
-                                'Floor $floorIndex',
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(fontSize: 22.0),
+            body: SafeArea(
+          child: Column(
+            children: [
+              const Text('Floors'),
+              const Divider(),
+              Expanded(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: _bloc.state.housesDTO?.floors,
+                  itemBuilder: (context, index) {
+                    final floorIndex = index + 1;
+                    return GestureDetector(
+                      onTap: () {
+                        _bloc.setNewLiftPosition(floorIndex);
+                      },
+                      child: Card(
+                        color: setColor(floorIndex),
+                        margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Text(
+                                  'Floor $floorIndex',
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(fontSize: 22.0),
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ));
       },
       listener: (context, state) {
