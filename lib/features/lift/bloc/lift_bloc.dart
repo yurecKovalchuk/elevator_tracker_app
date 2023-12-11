@@ -4,8 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:elevator_tracker_app/data/data.dart';
 import 'package:elevator_tracker_app/domain/domain.dart';
-
-import '../push_notification/push_notification.dart';
+import 'package:elevator_tracker_app/services/services.dart';
 
 part 'lift_state.dart';
 
