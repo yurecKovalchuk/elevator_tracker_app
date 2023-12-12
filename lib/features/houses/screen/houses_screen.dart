@@ -30,10 +30,40 @@ class _HousesScreenState extends State<HousesScreen> {
         child: BlocConsumer<HousesBloc, HousesState>(
           builder: (context, state) {
             return Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(46.0),
               child: Column(
                 children: [
-                  ElevatedButton(onPressed: () => showAddHouseDialog(context), child: const Text('jjjj')),
+                  InkWell(
+                    onTap: () => showAddHouseDialog(context),
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(color: Colors.black),
+                      ),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Add house',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                            ),
+                          ),
+                          SizedBox(width: 32,),
+                          Icon(
+                            Icons.add,
+                            color: Colors.black,
+                            size: 24,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                   Expanded(
                     child: ListView.builder(
                       shrinkWrap: true,
@@ -41,43 +71,53 @@ class _HousesScreenState extends State<HousesScreen> {
                       itemBuilder: (context, index) {
                         final house = _bloc.state.housesDTO?[index];
                         return Dismissible(
-                            key: Key(house?.id.toString() ?? ''),
-                            direction: DismissDirection.endToStart,
-                            onDismissed: (direction) {
-                              _bloc.deleteHouse(house?.id ?? 0);
-                            },
-                            background: Container(
-                              alignment: Alignment.centerRight,
-                              padding: EdgeInsets.only(right: 16.0),
-                              color: Colors.red,
-                              child: Icon(Icons.delete, color: Colors.white),
-                            ),
-                            child: GestureDetector(
+                          key: Key(house?.id.toString() ?? ''),
+                          direction: DismissDirection.endToStart,
+                          onDismissed: (direction) {
+                            _bloc.deleteHouse(house?.id ?? 0);
+                          },
+                          background: Container(
+                            alignment: Alignment.centerRight,
+                            padding: const EdgeInsets.only(right: 16.0),
+                            color: Colors.red,
+                            child: const Icon(Icons.delete, color: Colors.white),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 16.0),
+                            child: InkWell(
                               onTap: () {
                                 _navigatorPushToLiftScreen(house?.id);
                               },
-                              child: Card(
-                                margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
+                              child: Container(
+                                width: double.infinity,
+                                padding: const EdgeInsets.all(12),
+                                decoration: BoxDecoration(
+                                  color: Colors.transparent,
+                                  borderRadius: BorderRadius.circular(16),
+                                  border: Border.all(color: Colors.black),
                                 ),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(16.0),
-                                        child: Text(
+                                    const Text('House'),
+                                    const SizedBox(
+                                      width: 8,
+                                    ),
+
+                                       Expanded(
+                                         child: Text(
                                           house?.houseName ?? '',
                                           textAlign: TextAlign.center,
-                                          style: const TextStyle(fontSize: 22.0),
-                                        ),
-                                      ),
-                                    ),
+                                          style: const TextStyle(fontSize: 18.0),
+                                                                             ),
+                                       ),
+
                                   ],
                                 ),
                               ),
-                            ));
+                            ),
+                          ),
+                        );
                       },
                     ),
                   ),
