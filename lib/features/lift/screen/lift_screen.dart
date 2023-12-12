@@ -31,47 +31,52 @@ class _LiftScreenState extends State<LiftScreen> {
       builder: (context, state) {
         return Scaffold(
             body: SafeArea(
-          child: Column(
-            children: [
-              const Text('Floors'),
-              const Divider(),
-              Expanded(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: _bloc.state.housesDTO?.floors,
-                  itemBuilder: (context, index) {
-                    final floorIndex = index + 1;
-                    return GestureDetector(
-                      onTap: () {
-                        _bloc.setNewLiftPosition(floorIndex);
-                      },
-                      child: Card(
-                        color: setColor(floorIndex),
-                        margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Text(
-                                  'Floor $floorIndex',
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(fontSize: 22.0),
-                                ),
-                              ),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                const Text('Floors'),
+                const Divider(),
+                Expanded(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: _bloc.state.housesDTO?.floors,
+                    itemBuilder: (context, index) {
+                      final floorIndex = index + 1;
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap: () {
+                            _bloc.setNewLiftPosition(floorIndex);
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                              color: setColor(floorIndex),
+                              borderRadius: BorderRadius.circular(16),
+                              border: Border.all(color: Colors.black),
                             ),
-                          ],
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    'Floor $floorIndex',
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(fontSize: 18.0),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ));
       },
@@ -88,7 +93,7 @@ class _LiftScreenState extends State<LiftScreen> {
       return Colors.red;
     }
     if (_bloc.state.newLiftPosition == index) {
-      return Colors.green;
+      return Colors.yellow;
     }
     return Colors.transparent;
   }

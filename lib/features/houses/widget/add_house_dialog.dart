@@ -64,17 +64,26 @@ class AddHouseDialogState extends State<AddHouseDialog> {
         ],
       ),
       actions: [
-        ElevatedButton(
-          onPressed: () {
-            Navigator.pop(
+        InkWell(
+          onTap: () => Navigator.pop(
               context,
               HouseModel(
                 houseName: nameController.text,
                 floors: int.tryParse(floorsController.text) ?? 0,
-              ),
-            );
-          },
-          child: const Text('Add'),
+              )),
+          child: Container(
+            constraints: const BoxConstraints(minWidth: 80),
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(24),
+              border: Border.all(color: Colors.black),
+            ),
+            child: const Text(
+              'add',
+              textAlign: TextAlign.center,
+            ),
+          ),
         ),
       ],
     );
