@@ -54,7 +54,9 @@ class _HousesScreenState extends State<HousesScreen> {
                               fontSize: 18,
                             ),
                           ),
-                          SizedBox(width: 32,),
+                          SizedBox(
+                            width: 32,
+                          ),
                           Icon(
                             Icons.add,
                             color: Colors.black,
@@ -103,15 +105,13 @@ class _HousesScreenState extends State<HousesScreen> {
                                     const SizedBox(
                                       width: 8,
                                     ),
-
-                                       Expanded(
-                                         child: Text(
-                                          house?.houseName ?? '',
-                                          textAlign: TextAlign.center,
-                                          style: const TextStyle(fontSize: 18.0),
-                                                                             ),
-                                       ),
-
+                                    Expanded(
+                                      child: Text(
+                                        house?.houseName ?? '',
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(fontSize: 18.0),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),

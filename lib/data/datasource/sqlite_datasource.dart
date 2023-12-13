@@ -1,8 +1,8 @@
-import 'package:elevator_tracker_app/models/house_model.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:sqflite/sqflite.dart';
 
+import 'package:elevator_tracker_app/models/house_model.dart';
 import '../data.dart';
 
 class Tables {

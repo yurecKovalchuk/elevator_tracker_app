@@ -44,7 +44,6 @@ class LiftBloc extends Cubit<LiftState> {
       await _repository.updateCurrentLiftPosition(state.housesDTO!.id!, currentLiftPosition);
       getHouseDTO(state.housesDTO!.id!);
     }
-    // pushNotification(state.housesDTO!.houseName.toString(), currentLiftPosition);
     emit(state.copyWith(status: LiftStateStatus.success));
   }
 

@@ -1,4 +1,3 @@
-import 'package:elevator_tracker_app/data/dto/houses_dto.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -52,7 +51,6 @@ class Application extends StatelessWidget {
         name: AppRoutInfo.liftScreen.name,
         builder: (context, state) {
           final queriesHouse = state.uri.queryParameters['id'];
-          // final extraHouse = state.extra as HousesDTO;
 
           return BlocProvider<LiftBloc>(
             create: (BuildContext context) => LiftBloc(

@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:get_it/get_it.dart';
 
+import 'package:get_it/get_it.dart';
 import 'package:logging/logging.dart';
 
 import 'di/injection.dart';
