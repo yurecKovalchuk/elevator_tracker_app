@@ -1,16 +1,42 @@
 # elevator_tracker_app
 
-A new Flutter project.
+A Flutter project designed to track and manage elevators in buildings.
 
-## Getting Started
+# Features
 
-This project is a starting point for a Flutter application.
+- Start: Simple and intuitive design for easy interaction.
+- Houses: Add, delete, and navigate through a list of buildings.
+- Lift: Move the elevator to selected floors and receive event notifications.
 
-A few resources to get you started if this is your first Flutter project:
+# Programming Approaches
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+The Elevator Tracker app employs the following programming approaches:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Flutter Bloc Pattern: Manages state and user interactions efficiently.
+- Provider Package: Implements dependency injection and state management.
+- Dependency Injection: Organizes app components effectively.
+- Repository Pattern: Separates concerns for data management, handling local and remote sources.
+-
+
+# Project Structure
+
+The app follows a structured architecture with distinct layers:
+
+- Data Sources:
+  SQLite Data Source: Dedicated to SQLite database operations for local storage.
+
+- Repository:
+  The repository layer acts as an abstraction over data sources, providing a clean API for data
+  access.
+  Houses Repository: Manages logic for retrieving houses, handling both local and remote sources.
+
+- Presentation Layer:
+  Bloc (Business Logic Component): Manages app state and business logic, handling user interactions.
+  UI Components: User interface components responsible for rendering views.
+  This modular approach enhances code readability, maintainability, and testability, ensuring a
+  robust and scalable architecture for the Elevator Tracker app.
+
+- Push Notification:
+  The Elevator Tracker app includes native push notification functionality to keep users informed
+  about elevator events. The logic for push notifications is implemented on both the iOS and Android
+  platforms.
