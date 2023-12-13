@@ -1,7 +1,7 @@
-import 'package:elevator_tracker_app/data/data.dart';
-import 'package:elevator_tracker_app/models/house_model.dart';
 import 'package:injectable/injectable.dart';
 
+import 'package:elevator_tracker_app/data/data.dart';
+import 'package:elevator_tracker_app/models/house_model.dart';
 import '../../domain/domain.dart';
 
 @Injectable(as: TrackerRepository)

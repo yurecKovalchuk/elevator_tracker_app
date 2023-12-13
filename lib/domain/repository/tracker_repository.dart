@@ -1,5 +1,4 @@
 import 'package:elevator_tracker_app/models/house_model.dart';
-
 import '../../data/dto/dto.dart';
 
 abstract class TrackerRepository {
